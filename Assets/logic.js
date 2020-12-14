@@ -5,8 +5,8 @@ const startButton = document.querySelector("#start") // start button, initialize
 startButton.addEventListener('click', callQuestions)
 
 function callQuestions(){
-    document.querySelector("#start-screen").style.visibility = "hidden"
-    document.querySelector("#questions").style.visibility = "visible" // not displaying onclick? unsure of why.
+  startScreen.className = "hide" //changing the classname
+  quizContainer.className = "show" //changing the classname
 }
 
 //quiz content//
@@ -32,7 +32,20 @@ const finalScore = document.querySelector("#final-score")
 
 //logic start//
 function buildQuiz(){
-    const answers = [] //calling them from quizquestion object
-}
+     const output = [] //variable for HTML generation
+    
+     quizQuestions.forEach((currentQuestion, qNumber) => {//foreach loop for questions object array. 
+         const answers = [] //array containing possible answers
+         for (letter in currentQuestion.answers){ // loop to add in button
+             answers.push( // push is adding these items to the answers array and slapping down a button per item.
+ 				"<label>"
+ 					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
+ 					+ letter + ": "
+					+ currentQuestion[i].answers[letter]
+				+ "</label>"
+           );
+        }
+     })
+ }
 
-function showResults(){}
+ function showResults(){}
