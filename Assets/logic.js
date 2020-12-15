@@ -10,7 +10,7 @@ function startQuiz(){
   quizContainer.className = "show" //changing the classname
   counterEl.textContent = 60
   setTime()
-  console.log("start")
+  giveQOne()
 }
 
 let timeLeft // global variable
@@ -28,20 +28,8 @@ function setTime(){
 
 //quiz content//
 let quizContainer = document.querySelector("#questions") // dynamically updates with questions?
-let questionTitle = document.querySelector("#question-title") // h2 to populate with question itself?
-let questionOptions = document.querySelector("#choices") // radio buttons? 
-let quizQuestion = [
-    {
-        question: "string",
-        answers: {
-            a: "string",
-            b: "string",
-            c: "string", 
-        },
-        correctAnswer: "a b or c"
-    }
-]
-
+var questionTitle = document.querySelector("#question-title") // h2 to populate with question itself?
+let questionOptions = document.querySelector("#choices") // button styling already written
 
 //quiz end//
 let endScreen = document.querySelector("#end-screen")
@@ -63,49 +51,56 @@ let initialsContainer = document.querySelector("#initials")
 //Talked with a classmate about using arrays and for loops, for loop to call in question functions. 
 //Mentioned I learned how to do for loop eventlisteners to make code more dry. Pasted in some code from my own experimenting as a reminder
 
-    function giveButtons() {
-        for (var i = 0; i < catTypes.length; i++) { // creating a for loop that trucks thru the array catTypes
-            var btn = document.createElement("button") // and generating a button
-            var txt = document.createTextNode(catTypes[i]) // and then telling it to enter values from the array as text
-            btn.setAttribute("class","CatButtons")
-            btn.appendChild(txt) // appending text node to button as a child
-            buttonEl.appendChild(btn) // appending the buttons to the button element
-          }
-    
-          //next: create event listener loop for on click ( element.addEventListener("event") )
-    
-          var CatButtons = document.getElementsByClassName("CatButtons")
-          
-          for (var i = 0; i < CatButtons.length; i++) { 
-            if (CatButtons[i].innerHTML === "sphynx"){ // .innerHTML is checking the text attribute inside the element
-                CatButtons[i].addEventListener("click", function(){
-                    alert("Sphynx!")
-                }) 
-                //using functions, when implementing arguments, rule of thumb is you add strings unless you're adding a vairable representing a string
-            }else{
-                CatButtons[i].addEventListener("click", function(){
-                    console.log("Normal Cat!")   
-            }
-         )}
-        }
+function giveButtons(give) {
+    for (var i = 0; i < give.length; i++) {
+       var btn = document.createElement("button");
+       var txt = document.createTextNode(give[i]);
+       btn.appendChild(txt);
+       btn.id = give[i];
+       questionOptions.appendChild(btn);
+    }
+}
+
+function incorrect() {
+    alert("wrong!")
+}
+
+function correct() {
+    alert("right!")
+}
+
+function giveQOne(){
+    questionTitle.textContent = "string"
+    let questionOne = ["A", "B", "C", "D"] //placeholders, actual qs to be written later
+    giveButtons(questionOne) // spawning buttons in
+    let q1c1 = document.querySelector (questionOne[0]) // telling to delegate to buttons from array
+    let q1c2 = document.querySelector (questionOne[1])
+    let q1c3 = document.querySelector (questionOne[2])
+    let q1c4 = document.querySelector (questionOne[3])
+    q1c1.addEventListener("click", incorrect)
+    q1c2.addEventListener("click", incorrect)
+    q1c3.addEventListener("click", correct)
+    q1c4.addEventListener("click", incorrect)
+    }
 
 
-// function buildQuiz(){
-//      let output = [] //variable for HTML generation
-    
-//      quizQuestions.forEach((currentQuestion, qNumber) => {//foreach loop for questions object array. 
-//          let answers = [] //array containing possible answers
-//          for (letter in currentQuestion.answers){ // loop to add in button
-//              answers.push( // push is adding these items to the answers array and slapping down a button per item.
-//  				"<label>"
-//  					+ '<input type="button" name="question'+i+'" value="'+letter+'">'
-//  					+ letter + ": "
-// 					+ currentQuestion[i].answers[letter]
-// 				+ "</label>"
-//            );
-//         }
-//      })
-//  }
+    //next: create event listener loop for on click ( element.addEventListener("event") )   
 
- function showResults(){}
- 
+//     function assignButtons(){ // looping eventListener? is it less repetition this way even if it's long?
+//     for (var i = 0; i < give.length; i++) { 
+//         giveButtons[i] = document.getElementById(give[i])
+//     if (give[i].innerHTML === "correct answer??"){ // change from innerhtml youre looking for something else, need to remeber
+//         CatButtons[i].addEventListener("click", function(){
+//             //add point
+//             //go to next question
+//         }) 
+//         //using functions, when implementing arguments, rule of thumb is you add strings unless you're adding a vairable representing a string
+//     }else{
+//         CatButtons[i].addEventListener("click", function(){
+//             //subtract time
+//             //go to next question
+//       }
+//     )}
+// }
+
+// function showResults(){}
