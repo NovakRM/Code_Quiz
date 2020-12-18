@@ -6,15 +6,16 @@ let startButton = document.querySelector("#start") // start button, initializes 
 let counterEl = document.querySelector("#time") //timer element
 
 //Score
-var score = 0;
+var score = 1
 
 startButton.addEventListener('click', startQuiz) //event listener for click, calls startquiz
 
 function startQuiz(){ 
+  localStorage.setItem("score", 0); 
   startScreen.className = "hide" //changing the classname
   quizContainer.className = "show" //changing the classname
   counterEl.textContent = 60
-  setTime()
+  setTime()// sets score to 0 and stores future incrementation locally
   nextQuestion(questionArray[0]) // change questions calling function? 
 }
 
@@ -73,7 +74,7 @@ let questionArray = [
     {
         questionTitle: "Question 4",
         answerOptions: [ "a","b","c","d"],
-        correctAnswer: 2 //index of correct answer, C
+        correctAnswer: 2 //index of correct answer, B
     }
 ]
 
@@ -112,19 +113,22 @@ function incorrect() {
 
 function correct() {
     alert("right!")
-    //add point
+    parseInt(localStorage.getItem("score")) //grabbing score from local storage
+    endScreen.textContent = score++ // adding 1 to it
+    localStorage.setItem("score", score) // putting the new score in storage
 }
 
 //quiz end//
 let endScreen = document.querySelector("#end-screen")
 let finalScore = document.querySelector("#final-score")
 
-function showScore() {
+function endQuiz(){
+    scoreStore()
+    endScreen.className = "start" //changing the classname
+    quizContainer.className = "hide" //changing the classname
+}
+
+function scoreStore() {
     finalScore.textContent = localStorage.getItem("score")
 }
 
-function endQuiz(){
-    quizContainer.className = "hide" //changing the classname
-    endScreen.className = "show" //changing the classname
-    showScore()
-}
