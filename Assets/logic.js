@@ -57,25 +57,30 @@ function giveButtons(give) {
 
 let questionArray = [
     {
-        questionTitle: "Question 1",
-        answerOptions: [ "a","b","c","d"],
-        correctAnswer: 3 //index of correct answer, D
+        questionTitle: "Commonly used data types DO NOT include:",
+        answerOptions: ["stings", "alerts", "booleans", "numbers"],
+        correctAnswer: 1 //index of correct answer, alerts
     },
     {
-        questionTitle: "Question 2",
-        answerOptions: [ "a","b","c","d"],
-        correctAnswer: 1 //index of correct answer, B
+        questionTitle: "The condition in an if / else statement is enclosed within _____.",
+        answerOptions: ["quotes", "curly brackets", "parentheses", "square brackets"],
+        correctAnswer: 2 ///index of correct answer, parentheses
     },
     {
-        questionTitle: "Question 3",
-        answerOptions: [ "a","b","c","d"],
-        correctAnswer: 1 //index of correct answer, B
+        questionTitle: "String values must be enclosed within _____ when being assigned to variables.",
+        answerOptions: ["quotes", "commas", "curly brackets", "parentheses"],
+        correctAnswer: 0 //index of correct answer, quotes
     },
     {
-        questionTitle: "Question 4",
-        answerOptions: [ "a","b","c","d"],
-        correctAnswer: 2 //index of correct answer, B
-    }
+        questionTitle: "A useful tool in development and debugging that works by printing content to the console is:",
+        answerOptions: ["JavaScript", "terminal/bash", "for loops", "console log"],
+        correctAnswer: 3 //index of correct answer, console.log
+    },
+    {
+        questionTitle:  "Arrays in JavaScript can be used to store _____.",
+        answerOptions: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+        correctAnswer: 3 //index of correct answer, all
+    },
 ]
 
 let questionIndexPos = 0 // telling the browser where we start in the index above, it's kind of like how you have to call a function. You're telling the thing what to do
