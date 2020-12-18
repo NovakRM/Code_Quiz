@@ -126,14 +126,23 @@ function correct() {
 //quiz end//
 let endScreen = document.querySelector("#end-screen")
 let finalScore = document.querySelector("#final-score")
-
-function endQuiz(){
-    scoreStore()
-    endScreen.className = "start" //changing the classname
-    quizContainer.className = "hide" //changing the classname
-}
+let userInitials = document.querySelector("#initials")
 
 function scoreStore() {
     finalScore.textContent = localStorage.getItem("score")
 }
 
+function endQuiz(){
+    scoreStore()
+    endScreen.className = "show" //changing the classname
+    quizContainer.className = "hide" //changing the classname
+}
+
+submit.addEventListener("click", userInput)
+
+//Function used to input user initials to local storage. Then shows highscore screen.
+function userInput() {
+    initialsValue = userInitials.value
+    localStorage.setItem("user", userInitials)
+    window.location.href = "./highscores.html"
+}
